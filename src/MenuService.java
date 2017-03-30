@@ -27,4 +27,8 @@ public class MenuService{
     public int promptForMainMenu5() {
         return 6;
     }
+
+    //public String whenMainMenuThenMenuPrinted(){
+    //    return"--Main Menu--";
+   // }
 }

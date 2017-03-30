@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -93,7 +94,7 @@ public class MenuServiceTest {
      * When the user enters 3
      * Then 3 is returned
      */
-    public void when2onMainMenuThen3(){
+    public void when3onMainMenuThen3(){
         // Arrange
         Scanner scanner = new Scanner("3");
         MenuService menu = new MenuService(scanner);
@@ -111,7 +112,7 @@ public class MenuServiceTest {
      * When the user enters 4
      * Then 4 is returned
      */
-    public void when2onMainMenuThen4(){
+    public void when4onMainMenuThen4(){
         // Arrange
         Scanner scanner = new Scanner("4");
         MenuService menu = new MenuService(scanner);
@@ -129,7 +130,7 @@ public class MenuServiceTest {
      * When the user enters 5
      * Then 5 is returned
      */
-    public void when2onMainMenuThen5(){
+    public void when5onMainMenuThen5(){
         // Arrange
         Scanner scanner = new Scanner("5");
         MenuService menu = new MenuService(scanner);
@@ -147,7 +148,7 @@ public class MenuServiceTest {
      * When the user enters 6
      * Then 6 is returned
      */
-    public void when2onMainMenuThen6(){
+    public void when6onMainMenuThen6(){
         // Arrange
         Scanner scanner = new Scanner("6");
         MenuService menu = new MenuService(scanner);
@@ -158,5 +159,24 @@ public class MenuServiceTest {
         // Assert
         assertThat(selection, equalTo(6));
     }
+
+
+    @Test
+    /**
+     * When main menu prompt
+     * Then the menu is displayed
+     */
+    public void whenMainMenuThenMenuPrinted(){
+        // Arrange
+        Scanner scanner = new Scanner("1");
+        MenuService menu = new MenuService(scanner);
+
+        // Act
+        menu.promptForMainMenu();
+
+        // Assert
+        assertThat(this.outputStream.toString(), containsString("-- Main Menu --"));
+    }
+
 
 }
