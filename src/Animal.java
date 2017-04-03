@@ -1,51 +1,42 @@
-import java.util.ArrayList;
+import com.sun.org.glassfish.gmbal.Description;
+import com.sun.tools.javac.util.Name;
 
 /**
- * Created by cmitchell on 3/20/17.
- *
- * You will need to create a class named Animal. Animals have these properties:
-
- Name
- Species
- Breed
- Description
- *
- *
+ * Created by cmitchell on 3/29/17.
  */
 public class Animal {
-//create animal properties
     private String name;
     private String species;
     private String breed;
     private String description;
 
-//constructor created. this is keyword referring to current instance this is used because it is private
-    public Animal(String name, String species, String breed, String description) {
+
+    public Animal(String name, String Species, String Breed, String Description) {
         this.name = name;
         this.species = species;
         this.breed = breed;
         this.description = description;
+
     }
-    //getters and setters only when you have private variables
+
     public String getName() {
-        return this.name;
+        return name;
     }
-//if you want to change yor vairabe
+
     public void setName(String name) {
         this.name = name;
     }
 
     public String getSpecies() {
-        return this.species;
+        return species;
     }
 
-    public void setSpecies( String species) {
+    public void setSpecies(String species) {
         this.species = species;
-
     }
 
     public String getBreed() {
-        return this.breed;
+        return breed;
     }
 
     public void setBreed(String breed) {
@@ -53,13 +44,10 @@ public class Animal {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
-
-
-
 }
