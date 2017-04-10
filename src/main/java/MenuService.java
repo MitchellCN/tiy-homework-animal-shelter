@@ -74,13 +74,17 @@ public class MenuService{
         if (animals.isEmpty()) {
             System.out.println("There are no animals to display!");
         }else{
-            for(int x = 0; x < animals.size(); x++){
-                System.out.println(animals.get(x).getName());
+            for(Animal animal : animals){
+                System.out.println(animal.getName());
+            }
+
             }
         }
-    }
 
-    public void createAnimal() {
+
+   public void createAnimal() {
         System.out.println("-- Create a Animal --");
-    }
+   }
+
+
 }
