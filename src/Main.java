@@ -4,6 +4,9 @@ public class Main{
 
     public static Scanner scanner;
 
-    public static void main(Object o) {
+    public static void main(String[] args) {
+
+
+
     }
 }

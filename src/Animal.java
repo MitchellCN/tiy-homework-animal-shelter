@@ -11,7 +11,7 @@ public class Animal {
     private String description;
 
 
-    public Animal(String name, String Species, String Breed, String Description) {
+    public Animal(String name, String species, String breed, String description) {
         this.name = name;
         this.species = species;
         this.breed = breed;
@@ -50,4 +50,6 @@ public class Animal {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

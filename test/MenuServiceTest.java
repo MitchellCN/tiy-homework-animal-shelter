@@ -1,4 +1,53 @@
-
+//When I go to Animal shelter....
+//
+//        As a user I want to see a main menu so that I know what options are available to me.
+//        As a user I want to select a main menu option numerically so that I can choose a feature of the app to use.
+//
+//        Menu Prompt:
+//
+//        As a User I want:
+//
+//        x - I see a main menu
+//        x - Shows a list of valid options (add, edit, list, delete, quit)
+//        - I can make a valid choice
+//        - 1 to 6
+//        - I can make an invalid options
+//        - any strings
+//        - out of range ints
+//        - any non-int number
+//        - when this happens, then user is re-prompted
+//
+//        As a programmer I want:
+//        - I want to know what the user wants.
+//
+//        Nouns:
+//        Menu
+//        provideOptions
+//        - Shows a list of animals
+//        - I see a header
+//        - If there are animals, I see list that includes index, animal name and species
+//        - If no animals, I see a message saying no animals available.
+//
+//
+//        - When I create an animal:
+//        - I am asked for breed
+//        - I am asked for species
+//        - I am asked for description
+//        - I am asked for name
+//        - An animal is created
+//        - I see requirements about what is required
+//        - I see a header
+//        - I see some descriptive text
+//        - If an animal isn't given an name or species or description then the user sees an error saying the field is required
+//        - If a user gets an error they are re-prompted
+//        - If done successfully, success message is shown
+//
+//
+//        - Create animal
+//        - Edit animal
+//        - Delete animal
+//        - List of animals
+//        - View details of animal
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +67,10 @@ import static org.junit.Assert.assertThat;
  */
 public class MenuServiceTest {
 
+
+
     ByteArrayOutputStream outputStream;
-    ArrayList<Animal> animals;
+    ArrayList<Animal> AnimalTest;
 
 
     @Before
@@ -29,20 +80,20 @@ public class MenuServiceTest {
         System.setOut(printStream);
 
 
-        animals = new ArrayList<>();
-        animals.add(new Animal(
+        AnimalTest = new ArrayList<>();
+        AnimalTest.add(new Animal(
                 "Bear",
                 "Lion",
                 "Tiger",
                 "OhMy"));
 
-        animals.add(new Animal(
+        AnimalTest.add(new Animal(
                 "Rocky",
                 "Turtle",
                 "Calvin",
                 "Whale"));
 
-        animals.add(new Animal(
+        AnimalTest.add(new Animal(
                 "Bird",
                 "Peguin",
                 "WaterBuffalo",
@@ -51,6 +102,89 @@ public class MenuServiceTest {
 
 
     }
+
+    // I need a list of menu options EG: 1 to 6
+
+    @Test
+    /**
+     * Given the Menu options 1 - 6 work correct
+     * When the user enters a number
+     * Then the correct prompt is return
+     *
+     */
+
+public void menuOptionsShownToUser(){
+
+    // Arrange
+    Scanner scanner = new Scanner("1");
+    MenuService menu = new MenuService(scanner);
+
+    // Act
+    int selection = menu.promptForMainMenu();
+
+    //Assert
+
+        assertThat(selection, equalTo(1));
+    }
+
+
+    @Test
+
+    // I need to make sure they're the right options
+
+    public void menuOptionsAreCorrect(){
+
+    //Arrange
+        Scanner scanner = new Scanner("3");
+        MenuService menu = new MenuService(scanner);
+
+        //Act
+        int selection =menu.promptForMainMenu();
+
+        //Assert
+
+           // assertThat(selection, equalTo(4));
+           //assertThat(selection, equalTo(5));
+            //assertThat(selection, equalTo(6));
+
+    }
+
+    @Test
+    // I need to make sure that the user can only provide values from 1 to 6
+
+    public void userOptionsOneThroughSix(){
+
+        //Arrange
+            Scanner scanner = new Scanner("0\n7\n5");
+            MenuService menu = new MenuService(scanner);
+
+        //Act
+        int selection = menu.promptForMainMenu();
+
+        //Assert
+        assertThat(outputStream.toString(),containsString("Error: '0' is not a valid choice!"));
+        assertThat(selection, equalTo(5));
+        assertThat(outputStream.toString(),containsString("Error: '7' is not a valid choice!"));
+    }
+
+    @Test
+    // I need to make sure the user can't enter strings
+
+    public void userCantUseStrings(){
+        //Arrange
+            Scanner scanner = new Scanner ("Good morning\n5");
+            MenuService Menu = new MenuService(scanner);
+
+        // Act
+            int selection = Menu.promptForMainMenu();
+
+        //Assert
+            assertThat(outputStream.toString(),containsString("'Good morning' is not a valid number"));
+            assertThat(selection, equalTo(5));
+    }
+    // The user needs to see an error message when they provided bad data
+    // The user needs to be prompted again if they provide bad data.
+
 
     @Test
     /**
@@ -82,7 +216,7 @@ public class MenuServiceTest {
         MenuService menu = new MenuService(scanner);
 
         // Act
-        int selection = menu.promptForMainMenu1();
+        int selection = menu.promptForMainMenu();
 
         // Assert
         assertThat(selection, equalTo(2));
@@ -100,7 +234,7 @@ public class MenuServiceTest {
         MenuService menu = new MenuService(scanner);
 
         // Act
-        int selection = menu.promptForMainMenu2();
+        int selection = menu.promptForMainMenu();
 
         // Assert
         assertThat(selection, equalTo(3));
@@ -118,7 +252,7 @@ public class MenuServiceTest {
         MenuService menu = new MenuService(scanner);
 
         // Act
-        int selection = menu.promptForMainMenu3();
+        int selection = menu.promptForMainMenu();
 
         // Assert
         assertThat(selection, equalTo(4));
@@ -136,7 +270,7 @@ public class MenuServiceTest {
         MenuService menu = new MenuService(scanner);
 
         // Act
-        int selection = menu.promptForMainMenu4();
+        int selection = menu.promptForMainMenu();
 
         // Assert
         assertThat(selection, equalTo(5));
@@ -154,7 +288,7 @@ public class MenuServiceTest {
         MenuService menu = new MenuService(scanner);
 
         // Act
-        int selection = menu.promptForMainMenu5();
+        int selection = menu.promptForMainMenu();
 
         // Assert
         assertThat(selection, equalTo(6));
@@ -166,7 +300,7 @@ public class MenuServiceTest {
      * When main menu prompt
      * Then the menu is displayed
      */
-    public void whenMainMenuThenMenuPrinted() {
+    public void whenMainMenuThenMenuDisplayed() {
         // Arrange
         Scanner scanner = new Scanner("1");
         MenuService menu = new MenuService(scanner);
@@ -210,7 +344,15 @@ public class MenuServiceTest {
 
         // Assert
         assertThat(this.outputStream.toString(), containsString("2) Create a Animal"));
+        assertThat(this.outputStream.toString(), containsString("3) View a Animal"));
+        assertThat(this.outputStream.toString(), containsString("4) Edit a Animal"));
+        assertThat(this.outputStream.toString(), containsString("5) Delete a Animal"));
+        assertThat(this.outputStream.toString(), containsString("6) Quit"));
     }
+
+
+
+
 
     @Test
     /**
@@ -370,9 +512,9 @@ public class MenuServiceTest {
 
     @Test
     /**
-     * Given a list of NO Animals
-     * When Animals are listed
-     * Then no Animals are displayed
+     * Given a list of NO AnimalTest
+     * When AnimalTest are listed
+     * Then no AnimalTest are displayed
      */
     public void whenNoAnimalsThenNoanimalMessageShown(){
         // Arrange
